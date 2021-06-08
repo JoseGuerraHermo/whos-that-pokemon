@@ -6,12 +6,7 @@ export default class Tittle extends React.Component {
     return (
       <div className="tittle">
         Who's that{' '}
-        <img
-          className="tittle_banner"
-          src={banner}
-          alt="pokeBanner"
-          // onClick={}
-        ></img>
+        <img className="tittle_banner" src={banner} alt="pokeBanner"></img>
         <span className="tittle_q">?</span>
       </div>
     )

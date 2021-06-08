@@ -2,6 +2,7 @@ import React from 'react'
 import ImgArea from './components/ImgArea'
 import Tittle from './components/Tittle'
 import Buttons from './components/Buttons'
+import Loading from './components/Loading'
 import pokeballPNG from './assets/pokeball.png'
 import {
   hide,
@@ -9,6 +10,7 @@ import {
   randomOrder,
   animationPoints,
   loadingImg,
+  loadingScreen,
 } from './components/helpers'
 
 class PokeApp extends React.Component {
@@ -21,6 +23,7 @@ class PokeApp extends React.Component {
       points: 0,
     }
     this.pointUp = this.pointUp.bind(this)
+    this.runOnce = true
   }
 
   async passPokename() {
@@ -35,22 +38,26 @@ class PokeApp extends React.Component {
         pokemonList.push(name.name)
       } catch (err) {
         console.log(err)
-        this.clickToPLay()
       }
     }
     this.setState({
       pokemon: pokemonList,
       number: numberFromFunction[0],
+      catchError: 0,
     })
   }
   pointUp() {
-    animationPoints()
-    this.setState({
-      points: this.state.points + 1,
-    })
+    if (this.runOnce === true) {
+      animationPoints()
+      this.setState({
+        points: this.state.points + 1,
+      })
+      this.runOnce = false
+    }
   }
 
   clickToPLay() {
+    this.runOnce = true
     this.passPokename()
     randomOrder()
     loadingImg()
@@ -63,6 +70,7 @@ class PokeApp extends React.Component {
   render() {
     return (
       <div className="game">
+        <Loading />
         {/* points board */}
         <div className="board">
           <div className="board_points">
@@ -72,6 +80,14 @@ class PokeApp extends React.Component {
               src={pokeballPNG}
             ></img>
             <div className="board_points-score">{this.state.points}</div>
+          </div>
+          <div className="board_menu">
+            <button
+              className="board_buttonContainer-button"
+              onClick={loadingScreen}
+            >
+              Menu
+            </button>
           </div>
           <div className="board_buttonContainer">
             <button

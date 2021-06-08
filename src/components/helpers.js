@@ -64,3 +64,7 @@ export const loadingImg = () => {
     false,
   )
 }
+export function loadingScreen() {
+  const loadContainer = document.querySelector('.Loading')
+  loadContainer.classList.toggle('right')
+}

@@ -21,6 +21,60 @@ body {
   justify-content: space-around;
   align-items: center;
 
+  .Loading {
+    z-index: 5;
+    position: absolute;
+    height: 99vh;
+    width: 100vw;
+    background-color: rgba(119, 0, 218, 0.2);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &_card {
+      font-family: $font;
+      font-size: 1.6rem;
+      text-align: center;
+      color: $color;
+      width: 90vw;
+      &-link {
+        margin-top: 7vh;
+        &-img {
+          height: 90px;
+          filter: invert(91%) sepia(15%) saturate(1993%) hue-rotate(4deg)
+            brightness(109%) contrast(104%);
+        }
+      }
+      &-button {
+        width: 90%;
+        color: $color;
+        height: 3rem;
+        font-family: $font;
+        font-size: 1rem;
+        background-color: rgba(0, 0, 0, 0);
+        border: 3px solid $color;
+        border-radius: 8px;
+        margin-top: 7vh;
+        text-transform: uppercase;
+        cursor: pointer;
+        @media (min-width: 768px) {
+          width: 70%;
+        }
+        @media (min-width: 1050px) {
+          width: 60%;
+        }
+        &:hover {
+          color: rgb(119, 0, 218);
+          background-color: $color;
+        }
+      }
+    }
+  }
+  .right {
+    right: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+
   .board {
     display: flex;
     align-items: center;
@@ -53,11 +107,16 @@ body {
       font-size: 1rem;
       z-index: 1;
       &-pokeball {
-        width: 7%;
+        width: 2rem;
         margin-right: 3vw;
         @media (min-width: 1050px) {
-          width: 5%;
+          width: 1.8rem;
         }
+      }
+    }
+    &_menu {
+      @media (min-width: 1050px) {
+        transform: translate(-10px, 0);
       }
     }
     &_buttonContainer {
